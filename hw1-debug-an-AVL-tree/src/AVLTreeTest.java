@@ -270,6 +270,7 @@
  
             System.out.println("\nDo you want to continue (Type y or n) \n");
             ch = scan.next().charAt(0);                        
+            
         } while (ch == 'Y'|| ch == 'y');               
     }
  }
