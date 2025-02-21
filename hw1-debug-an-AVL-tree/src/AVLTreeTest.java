@@ -95,7 +95,6 @@
      /* Rotate binary tree node with left child */     
      private AVLNode rotateWithLeftChild(AVLNode k2)
      {
-    	 //  BUG: incorrect 
          AVLNode k1 = k2.left;
          AVLNode k3 = k1.right; 
          k2.left = null;

@@ -8,5 +8,8 @@
 ![alt text](image.png)
 
 #### 修復
+* bug1: `rotateWithLeftChild` 傳送的參數不正確
+![alt text](image-1.png)
+* bug2: `rotateWithLeftChild`, `rotateWithRightChild rotate 錯誤
 
 
