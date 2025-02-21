@@ -74,16 +74,16 @@
              t.left = insert( x, t.left );
              if( height( t.left ) - height( t.right ) == 2 )
                  if( x < t.left.data )
-                     t = rotateWithLeftChild( t.left );
+                     t = rotateWithLeftChild(t);
                  else
-                     t = doubleWithLeftChild( t );
+                     t = doubleWithLeftChild(t);
          }
          else if( x > t.data )
          {
              t.right = insert( x, t.right );
              if( height( t.right ) - height( t.left ) == 2 )
                  if( x > t.right.data)
-                     t = rotateWithRightChild( t.right );
+                     t = rotateWithRightChild( t);
                  else
                      t = doubleWithRightChild( t );
          }
@@ -96,21 +96,29 @@
      private AVLNode rotateWithLeftChild(AVLNode k2)
      {
          AVLNode k1 = k2.left;
-         k2.right = k1.left;
-         k1.left = k2;
+         AVLNode k3 = k1.right; 
+         k2.left = null;
+         k1.right = k2;
          k2.height = max( height( k2.left ), height( k2.right ) ) + 1;
          k1.height = max( height( k1.left ), k2.height ) + 1;
+         if(k3 != null) {
+        	 insert(k3.data); 
+         }
          return k1;
      }
  
      /* Rotate binary tree node with right child */
      private AVLNode rotateWithRightChild(AVLNode k1)
      {
-         AVLNode k2 = k1.right;
-         k1.left = k2.right;
-         k2.right = k1;
-         k1.height = max( height( k1.left ), height( k1.right ) ) + 1;
-         k2.height = max( height( k2.right ), k1.height ) + 1;
+         AVLNode k2 = k1.right; 
+         AVLNode k3 = k2.left;  
+         k1.right = null; 
+         k2.left = k1;          
+         k1.height = max( height( k1.left ), height( k1.right ) ) + 1; 
+         k2.height = max( height( k2.right ), k1.height ) + 1;         
+         if(k3 != null) {
+        	 insert(k3.data);
+         }
          return k2;
      }
      /**
@@ -270,6 +278,7 @@
  
             System.out.println("\nDo you want to continue (Type y or n) \n");
             ch = scan.next().charAt(0);                        
+       
         } while (ch == 'Y'|| ch == 'y');               
     }
  }
