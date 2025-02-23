@@ -1,3 +1,6 @@
-# esclipse 教材
+# material of esclipse 
 .metadata 
 */.settings
+
+# file of upload to eeclase
+*.zip 
