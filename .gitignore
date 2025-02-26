@@ -4,3 +4,6 @@
 
 # file of upload to eeclase
 *.zip 
+
+# visual studio file
+**/.vs
