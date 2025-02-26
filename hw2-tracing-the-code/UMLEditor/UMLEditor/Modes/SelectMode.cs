@@ -89,6 +89,7 @@ namespace UMLEditor.Modes
         /// <param name="sender">The <seealso cref="object"/> which triggers the event.</param>
         /// <param name="e">The <seealso cref="EventArgs"/> containing information of mouse.</param>
         /// <seealso cref="Mode.OnMouseDrag"/>
+        /// BUG: only can move composite object, subobject cann't.
         public override void OnMouseDrag(object sender, MouseDragEventArgs e)
         {
             if (_hasSelectArea)
@@ -103,6 +104,14 @@ namespace UMLEditor.Modes
                 foreach (Shape shape in Canvas.SelectedShapes)
                 {
                     shape.Move(e.OffsetX, e.OffsetY);
+                    if (shape is CompositionObject)
+                    {
+                        foreach (Shape subShape in (shape as CompositionObject).GetShapes())
+                        {
+                        
+                            subShape.Move(e.OffsetX, e.OffsetY);
+                        }
+                    }
                 }
             }
 

@@ -26,6 +26,11 @@ namespace UMLEditor.Shapes.BasicObjects
             Shapes = new List<Shape>();
         }
 
+        public List<Shape> GetShapes()
+        {
+            return Shapes;
+        }
+
         /// <summary>
         /// Adds a <see cref="Shape"/> into this group.
         /// </summary>
