@@ -89,6 +89,7 @@ namespace UMLEditor.Modes
         /// <param name="sender">The <seealso cref="object"/> which triggers the event.</param>
         /// <param name="e">The <seealso cref="EventArgs"/> containing information of mouse.</param>
         /// <seealso cref="Mode.OnMouseDrag"/>
+        /// BUG: only can move composite object, subobject cann't.
         public override void OnMouseDrag(object sender, MouseDragEventArgs e)
         {
             if (_hasSelectArea)
@@ -187,6 +188,7 @@ namespace UMLEditor.Modes
             {
                 if (shape.IsWithin(p1, p2))
                 {
+
                     Canvas.RemoveShape(shape);
                     Canvas.AddShape(shape);
                     shape.IsSelected = true;
@@ -212,10 +214,12 @@ namespace UMLEditor.Modes
         /// <param name="selectedArea">The <see cref="SelectedArea"/> to be updated.</param>
         private void UpdateSelectedArea(Shape selectedArea)
         {
-            int left = _mousePressedPoint.X;
-            int top = _mousePressedPoint.Y;
-            int width = _currentMousePoint.X - _mousePressedPoint.X;
-            int height = _currentMousePoint.Y - _mousePressedPoint.Y;
+            // bug: if you select from right down to top left, it isn't select area. 
+            int left = (_mousePressedPoint.X < _currentMousePoint.X) ? _mousePressedPoint.X : _currentMousePoint.X;
+            int top = (_mousePressedPoint.Y < _currentMousePoint.Y) ? _mousePressedPoint.Y : _currentMousePoint.Y;
+
+            int width = Math.Abs(_currentMousePoint.X - _mousePressedPoint.X);
+            int height = Math.Abs(_currentMousePoint.Y - _mousePressedPoint.Y);
 
             selectedArea.SetLocation(left, top);
             selectedArea.SetSize(width, height);
