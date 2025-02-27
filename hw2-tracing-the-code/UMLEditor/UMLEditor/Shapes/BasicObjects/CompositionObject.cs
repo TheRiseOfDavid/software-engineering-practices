@@ -195,5 +195,14 @@ namespace UMLEditor.Shapes.BasicObjects
                 SetSize(right - left, bottom - top);
             }
         }
+
+        public override void Move(int offsetX, int offsetY)
+        {
+            base.Move(offsetX, offsetY);
+            foreach(var shape in Shapes)
+            {
+                shape.Move(offsetX, offsetY);
+            }
+        }
     }
 }
