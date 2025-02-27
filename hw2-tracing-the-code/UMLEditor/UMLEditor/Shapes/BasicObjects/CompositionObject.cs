@@ -26,6 +26,11 @@ namespace UMLEditor.Shapes.BasicObjects
             Shapes = new List<Shape>();
         }
 
+        public List<Shape> GetShapes()
+        {
+            return Shapes;
+        }
+
         /// <summary>
         /// Adds a <see cref="Shape"/> into this group.
         /// </summary>
@@ -188,6 +193,15 @@ namespace UMLEditor.Shapes.BasicObjects
 
                 base.SetLocation(left, top);
                 SetSize(right - left, bottom - top);
+            }
+        }
+
+        public override void Move(int offsetX, int offsetY)
+        {
+            base.Move(offsetX, offsetY);
+            foreach(var shape in Shapes)
+            {
+                shape.Move(offsetX, offsetY);
             }
         }
     }

@@ -53,6 +53,7 @@ namespace UMLEditor.Pseudo
             if (Line != null)
             {
                 Line.IsSelected = false;
+                Line.RemoveCombination(this); 
                 Canvas.GetInstance().RemoveShape(Line);
             }
         }
