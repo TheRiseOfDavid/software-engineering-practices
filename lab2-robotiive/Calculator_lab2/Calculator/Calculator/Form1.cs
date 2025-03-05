@@ -99,7 +99,11 @@ namespace Calculator
 
         private void subtraction_Click(object sender, EventArgs e)
         {
-            if (currentNum == 1)
+            if(textBox1.Text == "")
+            {
+                textBox1.Text = "-"; 
+            } 
+            else if (currentNum == 1)
             {
                 num1 = Convert.ToDouble(textBox1.Text);
                 subtraction.Enabled = false;
@@ -140,7 +144,11 @@ namespace Calculator
 
         private void equals_Click(object sender, EventArgs e)
         {
-            num2 = Convert.ToDouble(textBox1.Text);
+            if(currentNum == 2)
+            {
+                num2 = Convert.ToDouble(textBox1.Text);
+            }
+            
             switch (op)
             {
                 case "+":
@@ -155,14 +163,11 @@ namespace Calculator
                 case "/":
                     result = num1 / num2;
                     break;
-                // bug: doesn't input operator then click equal button before couldn't operate. 
-                default:
-                    result = num2;
-                    break; 
             }
             textBox1.Text = Convert.ToString(result);
             currentNum = 1;
             num1 = result;
+            button_show(); 
             return;
         }
 
