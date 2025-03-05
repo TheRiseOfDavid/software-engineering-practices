@@ -155,9 +155,14 @@ namespace Calculator
                 case "/":
                     result = num1 / num2;
                     break;
+                // bug: doesn't input operator then click equal button before couldn't operate. 
+                default:
+                    result = num2;
+                    break; 
             }
             textBox1.Text = Convert.ToString(result);
-            currentNum++;
+            currentNum = 1;
+            num1 = result;
             return;
         }
 
