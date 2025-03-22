@@ -5,6 +5,12 @@ import { WordPuritySystem } from "./WordPuritySystem";
 import { DataBaseSystem } from "./DataBaseSystem";
 import { WordPurityService } from "@externals/word-purity";
 
+/**
+ * 由於前期想說可以將 mock function 全部寫在一起便於理解，但後面發現用 
+ * jest.spyOn(HashGenerator.prototype, 'simpleISBN').mockReturnValue("1234");
+ * 可以透過用 spy 的方式去針對每個 test 的 function 做偽造更好
+ */
+
 jest.mock("./DataBaseSystem", () => {
     return {
         DataBaseSystem: jest.fn().mockImplementation(() => ({
@@ -23,7 +29,7 @@ jest.mock("./WordPuritySystem", () => {
             getItems: jest.fn().mockReturnValue(TestBookInfo),
             getUpdateMessage: jest.fn().mockReturnValue("Dom Purity Update"),
         })),
-    }
+    };
 })
 
 jest.mock("../../externals/word-purity")
@@ -55,7 +61,7 @@ jest.mock("./DisplayRangeSystem", () => {
             getUpdateMessage: jest.fn().mockReturnValue("Display Range Update"),
             getItems: jest.fn().mockReturnValue(TestBookInfo),
         })),
-    }
+    };
 })
 
 /**
