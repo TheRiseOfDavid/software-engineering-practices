@@ -32,9 +32,9 @@ describe("Clock class (Dependency Injection)", () => {
     // 測試當 clock 呼叫 getTime 行為與 GearMechanism 互動是正確的，並且取得的值也是相同的
     test("Should call Gear Mechanism Reset Method once when clock call reset method", () => {
         // Arrange
-        const mockValue = 16;
+        const mockValue: number = 16;
         const mockedGearMech = new GearMechanism() as jest.Mocked<GearMechanism>;  // `as jest.Mocked<GearMechanism>` 強制轉型，可有可無 
-        mockedGearMech.getPassTime = jest.fn().mockReturnValue(mockValue);
+        mockedGearMech.getPassTime.mockImplementation(() => mockValue)
         const clock = new DIExampleClock("Test Clock", mockedGearMech);
 
         // Act

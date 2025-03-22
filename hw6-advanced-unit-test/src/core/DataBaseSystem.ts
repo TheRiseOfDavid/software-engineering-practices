@@ -25,17 +25,19 @@ export class DataBaseSystem extends BaseSystem {
     // 如果連線成功，就先將 Book 的資料讀入
     public async connectDB() {
         let count = 0;
-        while(true) {
+        while (true) {
             try {
+
                 const res = await this.db.setUp("http://localhost", 4000);
                 this.items = await this.db.getBooks();
                 return res;
-            } 
+            }
             catch (e) {
                 await this.retryDelay();
                 if (++count >= DataBaseSystem.retryTimes) {
                     throw new Error("Cannnot connect to DB");
                 };
+
             }
         }
     }
@@ -63,7 +65,7 @@ export class DataBaseSystem extends BaseSystem {
                 throw new Error("Title or Author cannot be null");
             }
         }
-        catch(e) {
+        catch (e) {
             throw new Error("Add book failed");
         }
     }
@@ -77,7 +79,7 @@ export class DataBaseSystem extends BaseSystem {
                 throw new Error("ISBN cannot be empty");
             }
         }
-        catch(e) {
+        catch (e) {
             throw new Error("Delete book failed");
         }
     }
@@ -86,7 +88,7 @@ export class DataBaseSystem extends BaseSystem {
         try {
             this.items = await this.db.getBooks();
         }
-        catch(e) {
+        catch (e) {
             /** Do nothing */
         }
     }

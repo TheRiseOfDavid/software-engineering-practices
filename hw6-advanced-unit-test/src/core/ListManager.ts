@@ -22,7 +22,7 @@ export class ListViewerManager {
 
     private updateMsg: string[] = [];
 
-    constructor() {}
+    constructor() { }
 
     /**
      * 初始化所有的 System \
@@ -42,7 +42,8 @@ export class ListViewerManager {
     /**
      * 利用簡單的 For 迴圈去更新 System \
      * 而 UpdateType 是把 Enum 轉換成 Number 這樣就可以直接有起始更新點
-     * @param updateType 起始更新點 */
+     * @param updateType 起始更新點
+     * */
     public async updateResult(updateType: UpdateType) {
         this.updateMsg = [];
         for (let i = updateType; i < this.processors.length; i += 1) {
@@ -67,8 +68,8 @@ export class ListViewerManager {
      * @returns 格式化後的物件 */
     public generateDisplayItemRow() {
         return this.processors.at(-1).getItems().map<BookInfo>((val, index) => ({
-            ISBN:   val.ISBN,
-            title:  val.title,
+            ISBN: val.ISBN,
+            title: val.title,
             author: val.author,
         }));
     }
